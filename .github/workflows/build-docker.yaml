@@ -13,5 +13,6 @@ jobs:
         run: docker build ./api/ -t dsourav155/qr-code-api:latest
       - name: push images to docker hub
         run: |
+          docker login -u dsourav155 -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push dsourav155/qr-code-api:latest
 
