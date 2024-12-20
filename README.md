@@ -1,50 +1,96 @@
-# devops-qr-code
+# QR Code Generator
 
-This is the sample application for the DevOps Capstone Project.
-It generates QR Codes for the provided URL, the front-end is in NextJS and the API is written in Python using FastAPI.
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-## Application
+## Introduction
+The QR Code Generator is a web application that allows users to generate QR codes for any URL. The application consists of a front-end built with Next.js and a back-end API built with FastAPI. The generated QR codes are stored in an AWS S3 bucket and can be accessed via a public URL.
 
-**Front-End** - A web application where users can submit URLs.
+## Features
+- Generate QR codes for any URL.
+- Store QR codes in AWS S3 for easy access and sharing.
+- Responsive front-end interface built with Next.js.
+- Secure API with CORS enabled for local testing.
 
-**API**: API that receives URLs and generates QR codes. The API stores the QR codes in cloud storage(AWS S3 Bucket).
+## Architecture
+- **Front-end**: Built with Next.js, React, and Tailwind CSS.
+- **Back-end**: Built with FastAPI, using Python.
+- **Storage**: AWS S3 for storing QR code images.
 
-## Running locally
+## Installation
 
-### API
+### Prerequisites
+- Node.js and npm
+- Python 3.9
+- AWS account with S3 access
+- Docker
 
-The API code exists in the `api` directory. You can run the API server locally:
+### Front-end Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/dsourav155/qr-code-generator.git
+   cd qr-code-generator/front-end-nextjs
+   ```
 
-- Clone this repo
-- Make sure you are in the `api` directory
-- Create a virtualenv by typing in the following command: `python -m venv .venv`
-- Install the required packages: `pip install -r requirements.txt`
-- Create a `.env` file, and add you AWS Access and Secret key, check  `.env.example`
-- Also, change the BUCKET_NAME to your S3 bucket name in `main.py`
-- Run the API server: `uvicorn main:app --reload`
-- Your API Server should be running on port `http://localhost:8000`
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-### Front-end
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-The front-end code exits in the `front-end-nextjs` directory. You can run the front-end server locally:
+### Back-end Setup
+1. Navigate to the API directory:
+   ```bash
+   cd qr-code-generator/api
+   ```
 
-- Clone this repo
-- Make sure you are in the `front-end-nextjs` directory
-- Install the dependencies: `npm install`
-- Run the NextJS Server: `npm run dev`
-- Your Front-end Server should be running on `http://localhost:3000`
+2. Create a virtual environment and activate it:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
 
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Goal
+4. Run the API server:
+   ```bash
+   uvicorn main:app --reload
+   ```
 
-The goal is to get hands-on with DevOps practices like Containerization, CICD and monitoring.
+## Usage
+1. Open your browser and navigate to `http://localhost:3000`.
+2. Enter a URL in the input field and click "Generate QR Code".
+3. The generated QR code will be displayed and stored in your AWS S3 bucket.
 
-Look at the capstone project for more detials.
+## Configuration
+- **AWS Credentials**: Store your AWS credentials in the `api/.env` file.
+  ```env
+  AWS_ACCESS_KEY=your_access_key
+  AWS_SECRET_KEY=your_secret_key
+  ```
 
-## Author
+- **S3 Bucket**: Update the `bucket_name` in `api/main.py` with your S3 bucket name.
 
-[Rishab Kumar](https://github.com/rishabkumar7)
+## Contributing
+Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
 
 ## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-[MIT](./LICENSE)
+## Contact
+For questions or support, please contact [work.sourav155@gmail.com](mailto:work.sourav155@gmail.com).
