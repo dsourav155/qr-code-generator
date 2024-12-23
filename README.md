@@ -1,50 +1,154 @@
-# devops-qr-code
+# QR Code Generator - DevOps Project
 
-This is the sample application for the DevOps Capstone Project.
-It generates QR Codes for the provided URL, the front-end is in NextJS and the API is written in Python using FastAPI.
+A comprehensive DevOps implementation of a QR Code Generator that demonstrates modern cloud-native development practices. The project combines a Next.js front-end with a FastAPI backend, orchestrated through Kubernetes and managed via Terraform infrastructure as code.
 
-## Application
+## 🚀 Features
 
-**Front-End** - A web application where users can submit URLs.
+- Full-stack application with Next.js frontend and FastAPI backend
+- Containerized applications using Docker
+- Infrastructure as Code using Terraform
+- Kubernetes deployments for orchestration
+- Automated CI/CD pipeline with GitHub Actions
 
-**API**: API that receives URLs and generates QR codes. The API stores the QR codes in cloud storage(AWS S3 Bucket).
+## 🏗️ Architecture
 
-## Running locally
+### Frontend
+- Built with Next.js
+- Containerized using Docker
+- Kubernetes deployment configuration
+- Tailwind CSS for styling
 
-### API
+### Backend
+- FastAPI-powered REST API
+- Python-based microservice
+- Containerized using Docker
+- Kubernetes deployment configuration
 
-The API code exists in the `api` directory. You can run the API server locally:
+### DevOps Pipeline
+- Automated builds using GitHub Actions
+- Docker image publication to Docker Hub
+- Infrastructure provisioning with Terraform
+- Kubernetes orchestration
 
-- Clone this repo
-- Make sure you are in the `api` directory
-- Create a virtualenv by typing in the following command: `python -m venv .venv`
-- Install the required packages: `pip install -r requirements.txt`
-- Create a `.env` file, and add you AWS Access and Secret key, check  `.env.example`
-- Also, change the BUCKET_NAME to your S3 bucket name in `main.py`
-- Run the API server: `uvicorn main:app --reload`
-- Your API Server should be running on port `http://localhost:8000`
+## 🛠️ Technical Stack
 
-### Front-end
+- **Frontend**: Next.js
+- **Backend**: FastAPI (Python)
+- **Infrastructure**: Terraform, AWS
+- **Containerization**: Docker
+- **Orchestration**: Kubernetes
+- **CI/CD**: GitHub Actions
 
-The front-end code exits in the `front-end-nextjs` directory. You can run the front-end server locally:
+## 📁 Project Structure
 
-- Clone this repo
-- Make sure you are in the `front-end-nextjs` directory
-- Install the dependencies: `npm install`
-- Run the NextJS Server: `npm run dev`
-- Your Front-end Server should be running on `http://localhost:3000`
+```
+.
+├── .github/
+│   └── workflows/
+│       └── build-docker.yaml
+├── api/
+│   ├── Dockerfile
+│   ├── main.py
+│   ├── requirements.txt
+│   └── test_main.py
+├── front-end-nextjs/
+│   ├── Dockerfile
+│   └── src/
+├── infrastructure/
+│   ├── main.tf
+│   └── provider.tf
+├── backend.yaml
+├── frontend.yaml
+└── README.md
+```
 
+## 🚀 Deployment Pipeline
 
-## Goal
+The CI/CD pipeline automates the following steps:
+1. Code checkout
+2. Docker image building for both frontend and backend
+3. Image publication to Docker Hub
+4. Infrastructure provisioning
+5. Kubernetes deployment
 
-The goal is to get hands-on with DevOps practices like Containerization, CICD and monitoring.
+## Deployment & Infrastructure
 
-Look at the capstone project for more detials.
+## 🔄 CI/CD Pipeline
 
-## Author
+The CI/CD pipeline is implemented using GitHub Actions and is defined in `build-docker.yaml`. This pipeline automates the build and deployment process for both frontend and backend services.
 
-[Rishab Kumar](https://github.com/rishabkumar7)
+### Pipeline Steps
+1. **Code Checkout** 
+   - Utilizes `actions/checkout@v4`
+   - Fetches the latest code from the repository
 
-## License
+2. **Docker Image Building**
+   - Builds separate images for API and frontend
+   - Uses dedicated Dockerfiles for each service
 
-[MIT](./LICENSE)
+3. **Image Publication**
+   - Pushes built images to Docker Hub
+   - Ensures availability for deployment
+
+## 🐳 Docker Configuration
+
+### Backend Service
+- Uses official Python base image
+- Located in `/api/Dockerfile`
+- Dependencies managed via `requirements.txt`
+
+### Frontend Service
+- Uses official Node.js base image
+- Located in `/front-end-nextjs/Dockerfile`
+- Dependencies managed via package lockfile
+
+## ☁️ Infrastructure
+
+The project's infrastructure is managed through Terraform, with configuration files located in the `/infrastructure` directory.
+
+### AWS Provider Setup
+- Provider configuration in `provider.tf`
+- Manages AWS authentication and region settings
+
+### Core Infrastructure (`main.tf`)
+- VPC configuration
+- Subnet management
+- Route table setup
+- EKS cluster provisioning
+
+## ☸️ Kubernetes Deployments
+
+### API Service
+- Deployment defined in `backend.yaml`
+- Creates:
+  - Kubernetes Deployment
+  - Associated Service
+  - Required configurations
+
+### Frontend Service
+- Deployment defined in `frontend.yaml`
+- Creates:
+  - Kubernetes Deployment
+  - Associated Service
+  - Required configurations
+
+---
+
+This infrastructure setup ensures a scalable, maintainable, and automated deployment process for the QR Code Generator application.
+
+## 💻 Local Development
+
+### Backend Setup
+```bash
+cd api
+python -m venv .venv
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+### Frontend Setup
+```bash
+cd front-end-nextjs
+npm install
+npm run dev
+```
