@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qr-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: qr-api
+  template:
+    metadata:
+      labels:
+        app: qr-api
+    spec:
+      containers:
+      - name: qr-api
+        image: dsourav155/qr-code-api:latest
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: qr-api-service
+spec:
+  type: ClusterIP
+  selector:
+    app: qr-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

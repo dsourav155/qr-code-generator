@@ -6,16 +6,20 @@ import axios from 'axios';
 export default function Home() {
   const [url, setUrl] = useState('');
   const [qrCodeUrl, setQrCodeUrl] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
-      const response = await axios.post(`http://localhost:8000/generate-qr/?url=${url}`);
+      const response = await axios.post(`/api/generate-qr/?url=${encodeURIComponent(url)}`);
       setQrCodeUrl(response.data.qr_code_url);
     } catch (error) {
       console.error('Error generating QR Code:', error);
+      setError('Failed to generate QR code. Please try again.');
     }
   };
+
 
   return (
     <div style={styles.container}>
@@ -30,6 +34,7 @@ export default function Home() {
         />
         <button type="submit" style={styles.button}>Generate QR Code</button>
       </form>
+      {error && <p style={styles.error}>{error}</p>}
       {qrCodeUrl && <img src={qrCodeUrl} alt="QR Code" style={styles.qrCode} />}
     </div>
   );

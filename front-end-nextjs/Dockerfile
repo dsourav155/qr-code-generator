@@ -1,5 +1,5 @@
 # Use the official Node.js image
-FROM node:18-alpine as base
+FROM --platform=linux/amd64 node:18-alpine as base
 
 # Set the working directory
 WORKDIR /app
@@ -25,4 +25,4 @@ RUN npm run build
 EXPOSE 3000 
 
 # Run the Application
-CMD ["npm", "start"] 
+CMD ["npm", "start"]
